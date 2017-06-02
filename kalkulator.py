@@ -1,6 +1,7 @@
 from tkinter import *
 #import parser
 from math import *
+pm = __import__("model")
 okno = Tk()
 okno.title("Kalkulator")
 i = 0
@@ -22,27 +23,13 @@ def vnesioperator(operator):
 def pocisti():
     display.delete(0,END)
 
-def izracunaj():
+def pripravi():
     izraz=display.get()
-    izraz=izraz.replace(':','/')
-    lok=izraz.index("sin")+3
-    pravi_izraz = izraz[:lok]+'('+izraz[lok:]
-    stevci=['1','2','3','4','5','6','7','8','9','0']
-    pom=izraz[lok:]
-    for i in pom:
-        if i in stevci:      
-            lok=lok+1
-        else:
-            break
-    pravi_izraz = pravi_izraz[:lok+1]+')'+pravi_izraz[lok+1:]
-    print(pravi_izraz)
-##    try:
-##        pocisti()
-##        print(eval("sin(90"))
-##        display.insert(0,eval(izraz))
-##    except Exception:
-##        pocisti()
-##        display.insert(0,"NAPAKA!")
+    pocisti()
+    izraz=pm.izracunaj(izraz)
+    display.insert(0,eval (izraz))
+
+        
 
         
 #vnosno_polje = Entry(okno).grid(row = 1, columnspan = 4,sticky=W+E)
@@ -71,7 +58,7 @@ gumb9 = Button(okno, text = "9",height = 1, width = 3, command = lambda : vnesis
 gumb9.grid(row=6, column=3)
 gumb0 = Button(okno, text = "0", height = 1, width = 3, command = lambda : vnesist(0))
 gumb0.grid(row=7, column=1)
-gumb10 = Button(okno, text = "=", height = 1, width = 12, command = izracunaj)
+gumb10 = Button(okno, text = "=", height = 1, width = 12, command = pripravi)
 gumb10.grid(row=7, column=2, columnspan = 2)
 gumb11 = Button(okno, text = "+", height = 1, width = 3, command = lambda : vnesioperator("+"))
 gumb11.grid(row=4, column=4)
