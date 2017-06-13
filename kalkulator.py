@@ -29,10 +29,6 @@ def pripravi():
     izraz=pm.izracunaj(izraz)
     display.insert(0,eval (izraz))
 
-        
-
-        
-#vnosno_polje = Entry(okno).grid(row = 1, columnspan = 4,sticky=W+E)
 gumbi = Frame(okno)
 display = Entry(okno, font = ("Calibri", 13))
 display.grid(row = 1, columnspan = 4    , sticky = W+E)
